@@ -15,18 +15,28 @@ import net.jcip.annotations.*;
  */
 @ThreadSafe
 public class CountingFactorizer extends GenericServlet implements Servlet {
-    private final AtomicLong count = new AtomicLong(0);
+	// 利用原子变量处理计数问题
+	private final AtomicLong count = new AtomicLong(0);
 
-    public long getCount() { return count.get(); }
+	public long getCount() {
+		return count.get();
+	}
 
-    public void service(ServletRequest req, ServletResponse resp) {
-        BigInteger i = extractFromRequest(req);
-        BigInteger[] factors = factor(i);
-        count.incrementAndGet();
-        encodeIntoResponse(resp, factors);
-    }
+	public void service(ServletRequest req, ServletResponse resp) {
+		BigInteger i = extractFromRequest(req);
+		BigInteger[] factors = factor(i);
+		count.incrementAndGet();
+		encodeIntoResponse(resp, factors);
+	}
 
-    void encodeIntoResponse(ServletResponse res, BigInteger[] factors) {}
-    BigInteger extractFromRequest(ServletRequest req) {return null; }
-    BigInteger[] factor(BigInteger i) { return null; }
+	void encodeIntoResponse(ServletResponse res, BigInteger[] factors) {
+	}
+
+	BigInteger extractFromRequest(ServletRequest req) {
+		return null;
+	}
+
+	BigInteger[] factor(BigInteger i) {
+		return null;
+	}
 }
